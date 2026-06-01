@@ -364,12 +364,12 @@ class _CountryPollCard extends StatelessWidget {
 
               const SizedBox(height: 18),
 
-              // Today's votes + swings (demo data)
+              // Today's votes + swings (improved for visibility)
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+                padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
                   color: AppTheme.surfaceVariant,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -378,20 +378,27 @@ class _CountryPollCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Today's votes",
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
+                          "Today's Votes",
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                         Text(
                           '4,872',
-                          style: theme.textTheme.titleMedium?.copyWith(
+                          style: theme.textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.w900,
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Yesterday: 4,350  (+12%)',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: AppTheme.textMuted,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     Text(
                       '24h swings',
                       style: theme.textTheme.bodySmall?.copyWith(
@@ -399,30 +406,32 @@ class _CountryPollCard extends StatelessWidget {
                         color: AppTheme.textMuted,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 6),
                     Row(
                       children: [
                         Text(
                           'Republican ',
-                          style: theme.textTheme.bodySmall,
+                          style: theme.textTheme.bodyMedium,
                         ),
                         Text(
-                          '+1.8%',
-                          style: TextStyle(
-                            color: AppTheme.republicanRed,
+                          '↑ +1.8%',
+                          style: const TextStyle(
+                            color: Color(0xFF22C55E), // Green for positive
                             fontWeight: FontWeight.w800,
+                            fontSize: 16,
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 20),
                         Text(
                           'Democratic ',
-                          style: theme.textTheme.bodySmall,
+                          style: theme.textTheme.bodyMedium,
                         ),
                         Text(
-                          '-0.9%',
-                          style: TextStyle(
-                            color: AppTheme.democratBlue,
+                          '↓ -0.9%',
+                          style: const TextStyle(
+                            color: Color(0xFFEF4444), // Red for negative
                             fontWeight: FontWeight.w800,
+                            fontSize: 16,
                           ),
                         ),
                       ],
