@@ -60,15 +60,15 @@ class ResultsScreen extends StatelessWidget {
                 const Text('🦅', style: TextStyle(fontSize: 48)),
                 const SizedBox(height: 8),
                 Text(
-                  'Live Midterm Pulse',
-                  style: theme.textTheme.headlineLarge,  // Now the BIGGEST text on the page
+                  'A Daily Pulse of How America Feels Right Now',
+                  style: theme.textTheme.headlineLarge,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 6),
                 Text(
-                  'Real-time participant results • One verified vote per day',
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textSecondary,
+                  'One person. One vote per day.\nNo delays. No weighting.',
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -76,7 +76,37 @@ class ResultsScreen extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
+
+          // Transparency banner - honest about current state
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            decoration: BoxDecoration(
+              color: AppTheme.surfaceVariant,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppTheme.surfaceVariant, width: 1),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Early Public Experiment',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: AppTheme.republicanRed,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Results shown are currently simulated to demonstrate how the platform will work. Real verified voting (one person, one vote per day) is coming soon.',
+                  style: theme.textTheme.bodySmall,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
 
           // === OFFICIAL PARTY LOGOS — Republican (LEFT) & Democratic (RIGHT) ===
           // Large as practical. For true official logos, add real asset images (see instructions in code comments).

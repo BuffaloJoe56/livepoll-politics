@@ -67,9 +67,23 @@ class VoteScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: OutlinedButton(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Voting will be enabled once we connect real authentication.'),
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Vote Recorded (Demo)'),
+                        content: Text(
+                          'Thank you. In this early demo your choice has been noted.\n\n'
+                          'When real verified voting launches, you will only be able to vote once per day.',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pop(); // Go back to results
+                            },
+                            child: const Text('Back to Results'),
+                          ),
+                        ],
                       ),
                     );
                   },
@@ -95,7 +109,7 @@ class VoteScreen extends StatelessWidget {
 
             const Spacer(),
             Text(
-              'You can vote once per day.\nYour vote is private and final.',
+              'This is a demo.\nReal one-vote-per-day verification coming soon.',
               style: Theme.of(context).textTheme.bodySmall,
               textAlign: TextAlign.center,
             ),
