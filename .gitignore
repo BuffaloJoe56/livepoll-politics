@@ -1,0 +1,39 @@
+# Flutter
+**/doc/api/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/.last_build_id
+**/android/app/outputs/
+**/android/app/release/
+**/android/app/profile/
+**/android/.gradle/
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/web/**/canvaskit/
+
+# Firebase (you will add your own config)
+lib/firebase_options.dart
+*.env
+google-services.json
+GoogleService-Info.plist
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.DS_Store
+
+# Build
+build/
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+
+# Misc
+*.log
+*.tmp
+*.swp
+*~
+flutter_*.log
