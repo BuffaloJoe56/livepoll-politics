@@ -362,7 +362,76 @@ class _CountryPollCard extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 22),
+              const SizedBox(height: 18),
+
+              // Today's votes + swings (demo data)
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+                decoration: BoxDecoration(
+                  color: AppTheme.surfaceVariant,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Today's votes",
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          '4,872',
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      '24h swings',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: AppTheme.textMuted,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Text(
+                          'Republican ',
+                          style: theme.textTheme.bodySmall,
+                        ),
+                        Text(
+                          '+1.8%',
+                          style: TextStyle(
+                            color: AppTheme.republicanRed,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          'Democratic ',
+                          style: theme.textTheme.bodySmall,
+                        ),
+                        Text(
+                          '-0.9%',
+                          style: TextStyle(
+                            color: AppTheme.democratBlue,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 18),
 
               // Results - Republicans first (current government), then Democrats
               // Using realistic late May 2026 generic ballot averages as starting point
@@ -436,7 +505,7 @@ class _CountryPollCard extends StatelessWidget {
                         const Icon(Icons.how_to_vote_outlined, size: 14, color: AppTheme.textMuted),
                         const SizedBox(width: 6),
                         Text(
-                          '2,847 votes today',
+                          '4,872 votes today',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: AppTheme.textSecondary,
                             fontWeight: FontWeight.w500,
