@@ -108,41 +108,6 @@ class ResultsScreen extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // === OFFICIAL PARTY LOGOS — Top parties (ANC & DA prominent) ===
-          // Large as practical. For true official logos, add real asset images (see instructions in code comments).
-          Row(
-            children: [
-              Expanded(
-                child: _LargePartyLogo(
-                  partyName: 'African National Congress',
-                  subtitle: '',
-                  animal: 'ANC',
-                  color: const Color(0xFF000000), // ANC black
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: _LargePartyLogo(
-                  partyName: 'Democratic Alliance',
-                  subtitle: '',
-                  animal: 'DA',
-                  color: const Color(0xFF0047AB), // DA blue
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Top 7: ANC • DA • MK • EFF • IFP • PA • VF+',
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: AppTheme.textMuted,
-              fontWeight: FontWeight.w600,
-            ),
-            textAlign: TextAlign.center,
-          ),
-
-          const SizedBox(height: 20),
-
           // === PROMINENT LOGIN CTA (high contrast, hard to miss) ===
           SizedBox(
             height: 56,
@@ -201,81 +166,6 @@ class ResultsScreen extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Large, dominant party logo widgets - centered and powerful.
-/// ANC (left) and DA (right) as main contenders.
-/// Made bigger and more commanding.
-class _LargePartyLogo extends StatelessWidget {
-  final String partyName;
-  final String subtitle;
-  final String animal;
-  final Color color;
-
-  const _LargePartyLogo({
-    required this.partyName,
-    required this.subtitle,
-    required this.animal,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-      decoration: BoxDecoration(
-        color: AppTheme.surface,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: color, width: 3),
-        boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: 0.12),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Much bigger, dominant logo
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Text(
-              animal,
-              style: const TextStyle(fontSize: 64, fontWeight: FontWeight.w900, color: Colors.white),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            partyName,
-            style: TextStyle(
-              color: AppTheme.textPrimary,
-              fontSize: 22,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 1.0,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            subtitle,
-            style: TextStyle(
-              color: color,
-              fontSize: 11,
-              fontWeight: FontWeight.w800,
-            ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),
