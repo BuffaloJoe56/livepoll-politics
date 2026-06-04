@@ -22,7 +22,12 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
   }
 
   void _sendCode() {
-    if (_phoneNumber.isEmpty) return;
+    if (_phoneNumber.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a phone number first')),
+      );
+      return;
+    }
 
     setState(() {
       _codeSent = true;
@@ -107,17 +112,38 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   child: const Text('Send Verification Code'),
                 ),
               ] else ...[
-                // Step 2: Verification code
-                Text(
-                  'Verification code sent to $_phoneNumber',
-                  style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  'For this demo, enter any 6 digits (example: 123456)',
-                  style: TextStyle(color: Colors.grey),
-                  textAlign: TextAlign.center,
+                // Step 2: Verification code - very obvious for demo
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade50,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.blue.shade200),
+                  ),
+                  child: Column(
+                    children: [
+                      const Text(
+                        '✓ CODE SENT (DEMO)',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Verification code sent to $_phoneNumber',
+                        style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 4),
+                      const Text(
+                        'For this demo, enter any 6 digits (example: 123456)',
+                        style: TextStyle(color: Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 24),
 
@@ -125,6 +151,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   controller: _codeController,
                   decoration: const InputDecoration(
                     labelText: '6-digit code',
+                    hintText: 'e.g. 123456',
                     border: OutlineInputBorder(),
                     counterText: '',
                   ),
@@ -141,7 +168,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppTheme.republicanRed,
                   ),
-                  child: const Text('Verify Code'),
+                  child: const Text('Verify Code (demo)'),
                 ),
 
                 const SizedBox(height: 12),
