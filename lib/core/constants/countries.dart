@@ -1,8 +1,8 @@
 import '../models/poll_option.dart';
 
-/// This version of LivePoll is focused exclusively on the United States.
+/// South Africa focused version of LivePoll.
 enum Country {
-  unitedStates('us', 'United States', '🇺🇸');
+  southAfrica('za', 'South Africa', '🇿🇦');
 
   const Country(this.code, this.displayName, this.flag);
 
@@ -23,17 +23,21 @@ class CountryPoll {
   });
 }
 
-/// Current USA-focused poll.
-/// Tailored for the current political moment (midterms / 2026 cycle).
+/// Current South Africa poll.
+/// Top parties including FF+ / VF+ as requested. ANC first per UI order.
 final List<CountryPoll> activePolls = [
   CountryPoll(
-    country: Country.unitedStates,
-    question: 'If the midterm elections were held today, which party would you support?',
+    country: Country.southAfrica,
+    question: 'If national elections were held today, which party would you support?',
     options: const [
-      PollOption(id: 'rep', label: 'Republican Party'),
-      PollOption(id: 'dem', label: 'Democratic Party'),
-      PollOption(id: 'ind', label: 'Independent / Other'),
-      PollOption(id: 'undecided', label: 'Undecided'),
+      PollOption(id: 'anc', label: 'African National Congress (ANC)'),
+      PollOption(id: 'da', label: 'Democratic Alliance (DA)'),
+      PollOption(id: 'mk', label: 'uMkhonto weSizwe (MK)'),
+      PollOption(id: 'eff', label: 'Economic Freedom Fighters (EFF)'),
+      PollOption(id: 'ifp', label: 'Inkatha Freedom Party (IFP)'),
+      PollOption(id: 'pa', label: 'Patriotic Alliance (PA)'),
+      PollOption(id: 'ffp', label: 'Freedom Front Plus (VF+)'),
+      PollOption(id: 'other', label: 'Other / Undecided'),
     ],
   ),
 ];

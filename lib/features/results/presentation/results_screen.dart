@@ -45,7 +45,7 @@ class ResultsScreen extends StatelessWidget {
                     ).animate(onPlay: (c) => c.repeat(reverse: true)).scale(duration: 1400.ms),
                     const SizedBox(width: 8),
                     Text(
-                      'LIVE  •  2026 MIDTERM GENERIC BALLOT',
+                      'LIVE  •  NATIONAL POLITICAL PULSE',
                       style: theme.textTheme.labelLarge?.copyWith(
                         color: AppTheme.republicanRed,
                         fontWeight: FontWeight.w900,
@@ -60,7 +60,7 @@ class ResultsScreen extends StatelessWidget {
                 const Text('🇿🇦', style: TextStyle(fontSize: 48)),
                 const SizedBox(height: 8),
                 Text(
-                  'Live Midterm Pulse',
+                  'A Daily Pulse of How South Africans Feel Right Now',
                   style: theme.textTheme.headlineLarge,
                   textAlign: TextAlign.center,
                 ),
@@ -355,12 +355,12 @@ class _CountryPollCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header - Big centered American flag + text (much more prominent)
+              // Header - Big centered national flag + text (much more prominent)
               Center(
                 child: Column(
                   children: [
-                    // Much larger flag
-                    const Text('🇺🇸', style: TextStyle(fontSize: 64)),
+                    // Much larger flag - dynamic per country
+                    Text(poll.country.flag, style: const TextStyle(fontSize: 64)),
                     const SizedBox(height: 10),
                     Text(
                       poll.country.displayName,
@@ -372,7 +372,7 @@ class _CountryPollCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'If the midterm elections were held today',
+                      poll.question,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppTheme.textSecondary,
