@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:livepoll_politics/core/constants/countries.dart';
 import 'package:livepoll_politics/core/models/poll_option.dart';
 import 'package:livepoll_politics/core/theme/app_theme.dart';
@@ -79,7 +80,7 @@ class VoteScreen extends StatelessWidget {
               final fg = _textColorForOption(option.id);
 
               return Padding(
-                padding: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.only(bottom: 16),
                 child: OutlinedButton(
                   onPressed: () {
                     showDialog(
@@ -93,8 +94,8 @@ class VoteScreen extends StatelessWidget {
                         actions: [
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop(); // Go back to results
+                              Navigator.of(context).pop(); // close dialog
+                              context.go('/'); // always go back to main results page
                             },
                             child: const Text('Back to Results'),
                           ),
@@ -108,15 +109,31 @@ class VoteScreen extends StatelessWidget {
                     side: bg == AppTheme.surfaceVariant
                         ? const BorderSide(color: AppTheme.surfaceVariant, width: 1.5)
                         : BorderSide.none,
-                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 16),
                   ),
-                  child: Text(
-                    option.label,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: fg,
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        _abbrForOption(option.id),
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w900,
+                          color: fg,
+                          height: 1.0,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        option.label,
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: fg,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
               );
@@ -138,5 +155,18 @@ class VoteScreen extends StatelessWidget {
   List<PollOption> _orderedVoteOptions(List<PollOption> options) {
     final order = ['anc', 'da', 'mk', 'eff', 'ifp', 'pa', 'ffp', 'other'];
     return order.map((id) => options.firstWhere((o) => o.id == id)).toList();
+  }
+
+  String _abbrForOption(String id) {
+    switch (id) {
+      case 'anc': return 'ANC';
+      case 'da': return 'DA';
+      case 'mk': return 'MK';
+      case 'eff': return 'EFF';
+      case 'ifp': return 'IFP';
+      case 'pa': return 'PA';
+      case 'ffp': return 'VF+';
+      default: return 'OTHER';
+    }
   }
 }

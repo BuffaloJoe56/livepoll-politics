@@ -14,10 +14,12 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
   String _phoneNumber = '';
   bool _codeSent = false;
   final TextEditingController _codeController = TextEditingController();
+  final FocusNode _codeFocusNode = FocusNode();
 
   @override
   void dispose() {
     _codeController.dispose();
+    _codeFocusNode.dispose();
     super.dispose();
   }
 
@@ -34,14 +36,20 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
       _codeController.clear();
     });
 
+    // Show brief confirmation
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Demo code sent to $_phoneNumber.\nFor this test, enter any 6 digits (e.g. 123456).',
-        ),
-        duration: const Duration(seconds: 5),
+      const SnackBar(
+        content: Text('Code sent (demo)'),
+        duration: Duration(seconds: 2),
       ),
     );
+
+    // Auto-focus the code field after the rebuild
+    Future.delayed(const Duration(milliseconds: 150), () {
+      if (mounted) {
+        _codeFocusNode.requestFocus();
+      }
+    });
   }
 
   void _verifyCode() {
@@ -59,8 +67,8 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
       const SnackBar(content: Text('Phone verified! You can now cast your vote.')),
     );
 
-    // Send user to the SA vote screen
-    context.go('/vote/sa');
+    // Send user to the SA vote screen (use push so back navigation works)
+    context.push('/vote/sa');
   }
 
   @override
@@ -149,6 +157,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
 
                 TextField(
                   controller: _codeController,
+                  focusNode: _codeFocusNode,
                   decoration: const InputDecoration(
                     labelText: '6-digit code',
                     hintText: 'e.g. 123456',
@@ -158,7 +167,13 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   keyboardType: TextInputType.number,
                   maxLength: 6,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 28, letterSpacing: 12),
+                  style: const TextStyle(fontSize: 32, letterSpacing: 16, height: 1.1),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'DEMO: any 6 digits accepted — try 123456',
+                  style: TextStyle(fontSize: 13, color: Colors.grey),
+                  textAlign: TextAlign.center,
                 ),
 
                 const SizedBox(height: 16),

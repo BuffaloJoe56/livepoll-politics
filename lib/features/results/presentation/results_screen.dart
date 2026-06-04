@@ -135,7 +135,7 @@ class ResultsScreen extends StatelessWidget {
           for (final poll in activePolls) ...[
             _CountryPollCard(
               poll: poll,
-              onTap: () => context.go('/vote/${poll.country.code}'),
+              onTap: () => context.push('/vote/${poll.country.code}'),
             ),
             const SizedBox(height: 20),
           ],
@@ -417,7 +417,7 @@ class _CountryPollCard extends StatelessWidget {
                           value: pct,
                           backgroundColor: AppTheme.surfaceVariant,
                           color: barColor,
-                          minHeight: 11,
+                          minHeight: 18,
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
