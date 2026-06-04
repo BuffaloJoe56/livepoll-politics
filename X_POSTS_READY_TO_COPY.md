@@ -24,7 +24,7 @@ They always feel manipulated, slow, and disconnected from how people are actuall
 So I started building something different.
 
 Tweet 2:
-A simple platform where anyone can vote once per day on the midterms.
+A simple platform where anyone can vote once per day on South African national politics.
 
 The goal: show real-time shifts in public sentiment instead of carefully weighted snapshots from weeks ago.
 
