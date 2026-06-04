@@ -1,14 +1,14 @@
 # Ready-to-Post X Threads & Posts
-# LivePoll Politics - Early Public Experiment
+# LivePoll SA - Early Public Experiment
 
 ## Option 1: Short & Direct (Recommended for first post)
 
 I'm tired of polls that feel staged and weeks behind reality.
 
-So I'm building something simple: a daily pulse of how Americans actually feel about the midterms — one person, one verified vote per day. No weighting. No delays.
+So I'm building something simple: a daily pulse of how South Africans actually feel — one person, one verified vote per day. No weighting. No delays.
 
 Early version is live here:
-https://pollingusa.netlify.app/
+https://pollingsa.netlify.app/
 
 Still very rough. Real authentication coming soon. Would love honest feedback on whether this direction is worth pursuing.
 
@@ -29,7 +29,7 @@ A simple platform where anyone can vote once per day on the midterms.
 The goal: show real-time shifts in public sentiment instead of carefully weighted snapshots from weeks ago.
 
 Early version:
-https://pollingusa.netlify.app/
+https://pollingsa.netlify.app/
 
 Tweet 3:
 Right now the results are simulated (this is still an early experiment).
@@ -51,7 +51,7 @@ I’m experimenting with something more raw:
 One person. One vote per day. Real-time.
 
 Early demo is here:
-https://pollingusa.netlify.app/
+https://pollingsa.netlify.app/
 
 Still very early. The data is currently placeholder while I build out proper verification.
 

@@ -1,8 +1,8 @@
 import '../models/poll_option.dart';
 
-/// This version of LivePoll is focused exclusively on the United States.
+/// This version of LivePoll is focused on South Africa.
 enum Country {
-  unitedStates('us', 'United States', '🇺🇸');
+  southAfrica('za', 'South Africa', '🇿🇦');
 
   const Country(this.code, this.displayName, this.flag);
 
@@ -23,17 +23,21 @@ class CountryPoll {
   });
 }
 
-/// Current USA-focused poll.
-/// Tailored for the current political moment (midterms / 2026 cycle).
+/// Current South Africa-focused poll.
+/// Tailored for current political sentiment (post-2024 elections).
 final List<CountryPoll> activePolls = [
   CountryPoll(
-    country: Country.unitedStates,
-    question: 'If the midterm elections were held today, which party would you support?',
+    country: Country.southAfrica,
+    question: 'If national elections were held today, which party would you support?',
     options: const [
-      PollOption(id: 'rep', label: 'Republican Party'),
-      PollOption(id: 'dem', label: 'Democratic Party'),
-      PollOption(id: 'ind', label: 'Independent / Other'),
-      PollOption(id: 'undecided', label: 'Undecided'),
+      PollOption(id: 'anc', label: 'ANC'),
+      PollOption(id: 'da', label: 'Democratic Alliance (DA)'),
+      PollOption(id: 'mk', label: 'MK Party'),
+      PollOption(id: 'eff', label: 'EFF'),
+      PollOption(id: 'ifp', label: 'IFP'),
+      PollOption(id: 'pa', label: 'Patriotic Alliance (PA)'),
+      PollOption(id: 'ffp', label: 'VF+ (Freedom Front Plus)'),
+      PollOption(id: 'other', label: 'Other / Undecided'),
     ],
   ),
 ];

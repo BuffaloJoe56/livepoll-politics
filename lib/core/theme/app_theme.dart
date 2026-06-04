@@ -7,9 +7,9 @@ class AppTheme {
   static const Color surfaceVariant = Color(0xFFE8EAED);
   static const Color surfaceElevated = Color(0xFFF1F3F5);
 
-  // Classic American political colors (high visibility)
-  static const Color republicanRed = Color(0xFFDC2626);   // Strong GOP red
-  static const Color democratBlue = Color(0xFF1D4ED8);    // Strong Dem blue
+  // Political accent colors (high visibility)
+  static const Color republicanRed = Color(0xFFDC2626);   // Red accent
+  static const Color democratBlue = Color(0xFF1D4ED8);    // Blue accent
   static const Color primary = republicanRed;
   static const Color primaryVariant = Color(0xFFB91C1C);
   static const Color accent = democratBlue;

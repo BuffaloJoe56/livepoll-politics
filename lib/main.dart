@@ -44,7 +44,7 @@ class LivePollPoliticsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'LivePoll • Midterms 2026',
+      title: 'LivePoll • South Africa',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.dark,
       darkTheme: AppTheme.dark,
@@ -74,7 +74,7 @@ final GoRouter _router = GoRouter(
         final code = state.pathParameters['countryCode']!;
         final country = Country.values.firstWhere(
           (c) => c.code == code,
-          orElse: () => Country.unitedStates,
+          orElse: () => Country.southAfrica,
         );
         return VoteScreen(country: country);
       },

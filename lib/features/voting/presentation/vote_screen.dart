@@ -12,10 +12,20 @@ class VoteScreen extends StatelessWidget {
 
   Color _buttonColorForOption(String id) {
     switch (id) {
-      case 'rep':
-        return AppTheme.republicanRed;
-      case 'dem':
-        return AppTheme.democratBlue;
+      case 'anc':
+        return const Color(0xFF000000); // ANC
+      case 'da':
+        return const Color(0xFF0047AB); // DA
+      case 'mk':
+        return const Color(0xFF006400); // MK
+      case 'eff':
+        return const Color(0xFFDC2626); // EFF
+      case 'ifp':
+        return const Color(0xFFFFD700); // IFP
+      case 'pa':
+        return const Color(0xFF8B0000); // PA
+      case 'ffp':
+        return const Color(0xFFFF6600); // VF+ / FF+ orange
       default:
         return AppTheme.surfaceVariant;
     }
@@ -23,8 +33,13 @@ class VoteScreen extends StatelessWidget {
 
   Color _textColorForOption(String id) {
     switch (id) {
-      case 'rep':
-      case 'dem':
+      case 'anc':
+      case 'da':
+      case 'mk':
+      case 'eff':
+      case 'ifp':
+      case 'pa':
+      case 'ffp':
         return Colors.white;
       default:
         return AppTheme.textPrimary;
@@ -45,7 +60,7 @@ class VoteScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Midterm Pulse Check',
+              'National Pulse Check',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -119,11 +134,9 @@ class VoteScreen extends StatelessWidget {
     );
   }
 
-  /// Republicans first (current government)
+  /// ANC first, then top parties
   List<PollOption> _orderedVoteOptions(List<PollOption> options) {
-    final rep = options.where((o) => o.id == 'rep').toList();
-    final dem = options.where((o) => o.id == 'dem').toList();
-    final others = options.where((o) => o.id != 'rep' && o.id != 'dem').toList();
-    return [...rep, ...dem, ...others];
+    final order = ['anc', 'da', 'mk', 'eff', 'ifp', 'pa', 'ffp', 'other'];
+    return order.map((id) => options.firstWhere((o) => o.id == id)).toList();
   }
 }

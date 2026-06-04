@@ -14,7 +14,7 @@ class ResultsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LivePoll'),
+        title: const Text('LivePoll SA'),
         centerTitle: true,
       ),
       body: ListView(
@@ -45,7 +45,7 @@ class ResultsScreen extends StatelessWidget {
                     ).animate(onPlay: (c) => c.repeat(reverse: true)).scale(duration: 1400.ms),
                     const SizedBox(width: 8),
                     Text(
-                      'LIVE  •  2026 MIDTERM GENERIC BALLOT',
+                      'LIVE  •  SOUTH AFRICA NATIONAL POLL',
                       style: theme.textTheme.labelLarge?.copyWith(
                         color: AppTheme.republicanRed,
                         fontWeight: FontWeight.w900,
@@ -56,11 +56,11 @@ class ResultsScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 8),
-                // American Coat of Arms (Great Seal eagle) - prominent official symbol
-                const Text('🦅', style: TextStyle(fontSize: 48)),
+                // South Africa flag - prominent national symbol
+                const Text('🇿🇦', style: TextStyle(fontSize: 48)),
                 const SizedBox(height: 8),
                 Text(
-                  'A Daily Pulse of How America Feels Right Now',
+                  'A Daily Pulse of How South Africans Feel Right Now',
                   style: theme.textTheme.headlineLarge,
                   textAlign: TextAlign.center,
                 ),
@@ -108,28 +108,37 @@ class ResultsScreen extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // === OFFICIAL PARTY LOGOS — Republican (LEFT) & Democratic (RIGHT) ===
+          // === OFFICIAL PARTY LOGOS — Top parties (ANC & DA prominent) ===
           // Large as practical. For true official logos, add real asset images (see instructions in code comments).
           Row(
             children: [
               Expanded(
                 child: _LargePartyLogo(
-                  partyName: 'REPUBLICAN',
-                  subtitle: 'GOP • Current Government',
-                  animal: '🐘',
-                  color: AppTheme.republicanRed,
+                  partyName: 'African National Congress',
+                  subtitle: '',
+                  animal: 'ANC',
+                  color: const Color(0xFF000000), // ANC black
                 ),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: _LargePartyLogo(
-                  partyName: 'DEMOCRATIC',
-                  subtitle: 'DNC',
-                  animal: '🫏',
-                  color: AppTheme.democratBlue,
+                  partyName: 'Democratic Alliance',
+                  subtitle: '',
+                  animal: 'DA',
+                  color: const Color(0xFF0047AB), // DA blue
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Top 7: ANC • DA • MK • EFF • IFP • PA • VF+',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: AppTheme.textMuted,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
           ),
 
           const SizedBox(height: 20),
@@ -178,7 +187,7 @@ class ResultsScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Starting percentages reflect late May 2026 national generic ballot averages.',
+                  'Starting percentages reflect current South African polling averages (demo).',
                   style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
@@ -200,7 +209,7 @@ class ResultsScreen extends StatelessWidget {
 }
 
 /// Large, dominant party logo widgets - centered and powerful.
-/// Republican (left) and Democratic (right).
+/// ANC (left) and DA (right) as main contenders.
 /// Made bigger and more commanding.
 class _LargePartyLogo extends StatelessWidget {
   final String partyName;
@@ -244,7 +253,7 @@ class _LargePartyLogo extends StatelessWidget {
             ),
             child: Text(
               animal,
-              style: const TextStyle(fontSize: 120),
+              style: const TextStyle(fontSize: 64, fontWeight: FontWeight.w900, color: Colors.white),
             ),
           ),
           const SizedBox(height: 12),
@@ -263,7 +272,7 @@ class _LargePartyLogo extends StatelessWidget {
             subtitle,
             style: TextStyle(
               color: color,
-              fontSize: 14,
+              fontSize: 11,
               fontWeight: FontWeight.w800,
             ),
             textAlign: TextAlign.center,
@@ -281,17 +290,24 @@ class _CountryPollCard extends StatelessWidget {
   const _CountryPollCard({required this.poll, this.onTap});
 
   double _fakePercentage(String optionId) {
-    // Realistic starting point based on late May 2026 national generic ballot averages.
-    // Republicans featured first (current governing party). Numbers will be replaced by live votes.
+    // Plausible placeholder distribution for current South African politics (demo only).
     switch (optionId) {
-      case 'rep':        // Republican - featured first
-        return 0.42;
-      case 'dem':
-        return 0.39;
-      case 'ind':
-        return 0.11;
-      case 'undecided':
-        return 0.08;
+      case 'anc':
+        return 0.35;
+      case 'da':
+        return 0.22;
+      case 'mk':
+        return 0.15;
+      case 'eff':
+        return 0.12;
+      case 'ifp':
+        return 0.05;
+      case 'pa':
+        return 0.04;
+      case 'ffp':
+        return 0.03;
+      case 'other':
+        return 0.04;
       default:
         return 0.10;
     }
@@ -299,25 +315,31 @@ class _CountryPollCard extends StatelessWidget {
 
   Color _colorForOption(String optionId) {
     switch (optionId) {
-      case 'rep':
-        return AppTheme.republicanRed;
-      case 'dem':
-        return AppTheme.democratBlue;
-      case 'ind':
+      case 'anc':
+        return const Color(0xFF000000); // ANC black
+      case 'da':
+        return const Color(0xFF0047AB); // DA blue
+      case 'mk':
+        return const Color(0xFF006400); // MK green
+      case 'eff':
+        return const Color(0xFFDC2626); // EFF red
+      case 'ifp':
+        return const Color(0xFFFFD700); // IFP yellow/gold
+      case 'pa':
+        return const Color(0xFF8B0000); // PA dark red
+      case 'ffp':
+        return const Color(0xFFFF6600); // VF+ / FF+ orange
+      case 'other':
         return const Color(0xFF6B7280);
-      case 'undecided':
-        return const Color(0xFF475569);
       default:
         return AppTheme.primary;
     }
   }
 
-  /// Orders options so Republicans appear first (current governing party)
+  /// Orders options with ANC first, then other top parties
   List<PollOption> _orderedOptions(List<PollOption> options) {
-    final rep = options.where((o) => o.id == 'rep').toList();
-    final dem = options.where((o) => o.id == 'dem').toList();
-    final others = options.where((o) => o.id != 'rep' && o.id != 'dem').toList();
-    return [...rep, ...dem, ...others];
+    final order = ['anc', 'da', 'mk', 'eff', 'ifp', 'pa', 'ffp', 'other'];
+    return order.map((id) => options.firstWhere((o) => o.id == id)).toList();
   }
 
   @override
@@ -333,12 +355,12 @@ class _CountryPollCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header - Big centered American flag + text (much more prominent)
+              // Header - Big centered South Africa flag + text (much more prominent)
               Center(
                 child: Column(
                   children: [
                     // Much larger flag
-                    const Text('🇺🇸', style: TextStyle(fontSize: 64)),
+                    const Text('🇿🇦', style: TextStyle(fontSize: 64)),
                     const SizedBox(height: 10),
                     Text(
                       poll.country.displayName,
@@ -350,7 +372,7 @@ class _CountryPollCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'If the midterm elections were held today',
+                      'If national elections were held today',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppTheme.textSecondary,
@@ -364,9 +386,9 @@ class _CountryPollCard extends StatelessWidget {
 
               const SizedBox(height: 18),
 
-              // Today's votes + swings (improved for visibility)
+              // Today's votes + swings (much more prominent, 4x bigger text, better mobile spacing)
               Container(
-                padding: const EdgeInsets.all(14),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: AppTheme.surfaceVariant,
                   borderRadius: BorderRadius.circular(12),
@@ -379,14 +401,17 @@ class _CountryPollCard extends StatelessWidget {
                       children: [
                         Text(
                           "Today's Votes",
-                          style: theme.textTheme.bodyLarge?.copyWith(
+                          style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w700,
+                            fontSize: 20,
                           ),
                         ),
                         Text(
                           '4,872',
-                          style: theme.textTheme.headlineSmall?.copyWith(
+                          style: const TextStyle(
+                            fontSize: 96,
                             fontWeight: FontWeight.w900,
+                            height: 1.0,
                           ),
                         ),
                       ],
@@ -394,45 +419,59 @@ class _CountryPollCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       'Yesterday: 4,350  (+12%)',
-                      style: theme.textTheme.bodySmall?.copyWith(
+                      style: theme.textTheme.bodyMedium?.copyWith(
                         color: AppTheme.textMuted,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 14),
                     Text(
                       '24h swings',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w600,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
                         color: AppTheme.textMuted,
+                        fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 6),
-                    Row(
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 20,
+                      runSpacing: 4,
                       children: [
-                        Text(
-                          'Republican ',
-                          style: theme.textTheme.bodyMedium,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'ANC ',
+                              style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18),
+                            ),
+                            Text(
+                              '↑ +1.8%',
+                              style: const TextStyle(
+                                color: Color(0xFF22C55E),
+                                fontWeight: FontWeight.w900,
+                                fontSize: 56,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          '↑ +1.8%',
-                          style: const TextStyle(
-                            color: Color(0xFF22C55E), // Green for positive
-                            fontWeight: FontWeight.w800,
-                            fontSize: 16,
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Text(
-                          'Democratic ',
-                          style: theme.textTheme.bodyMedium,
-                        ),
-                        Text(
-                          '↓ -0.9%',
-                          style: const TextStyle(
-                            color: Color(0xFFEF4444), // Red for negative
-                            fontWeight: FontWeight.w800,
-                            fontSize: 16,
-                          ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'DA ',
+                              style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18),
+                            ),
+                            Text(
+                              '↓ -0.9%',
+                              style: const TextStyle(
+                                color: Color(0xFFEF4444),
+                                fontWeight: FontWeight.w900,
+                                fontSize: 56,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -442,12 +481,12 @@ class _CountryPollCard extends StatelessWidget {
 
               const SizedBox(height: 18),
 
-              // Results - Republicans first (current government), then Democrats
-              // Using realistic late May 2026 generic ballot averages as starting point
+              // Results - ANC first, then other major parties
+              // Using current South African polling averages as starting point (demo)
               ..._orderedOptions(poll.options).map((option) {
                 final pct = _fakePercentage(option.id);
                 final barColor = _colorForOption(option.id);
-                final isMajorParty = option.id == 'rep' || option.id == 'dem';
+                final isMajorParty = ['anc', 'da', 'mk', 'eff', 'ifp', 'pa', 'ffp'].contains(option.id);
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 9),
@@ -458,7 +497,7 @@ class _CountryPollCard extends StatelessWidget {
                         children: [
                           if (isMajorParty) ...[
                             Text(
-                              option.id == 'rep' ? '🐘  ' : '🫏  ',
+                              '🇿🇦  ',
                               style: const TextStyle(fontSize: 15),
                             ),
                           ],
