@@ -45,7 +45,7 @@ class ResultsScreen extends StatelessWidget {
                     ).animate(onPlay: (c) => c.repeat(reverse: true)).scale(duration: 1400.ms),
                     const SizedBox(width: 8),
                     Text(
-                      'LIVE  •  SOUTH AFRICA NATIONAL POLL',
+                      'LIVE  •  2026 MIDTERM GENERIC BALLOT',
                       style: theme.textTheme.labelLarge?.copyWith(
                         color: AppTheme.republicanRed,
                         fontWeight: FontWeight.w900,
@@ -60,15 +60,15 @@ class ResultsScreen extends StatelessWidget {
                 const Text('🇿🇦', style: TextStyle(fontSize: 48)),
                 const SizedBox(height: 8),
                 Text(
-                  'A Daily Pulse of How South Africans Feel Right Now',
+                  'Live Midterm Pulse',
                   style: theme.textTheme.headlineLarge,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 4),
                 Text(
-                  'One person. One vote per day.\nNo delays. No weighting.',
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
+                  'Real-time participant results • One verified vote per day.',
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: AppTheme.textSecondary,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -355,12 +355,12 @@ class _CountryPollCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header - Big centered South Africa flag + text (much more prominent)
+              // Header - Big centered American flag + text (much more prominent)
               Center(
                 child: Column(
                   children: [
                     // Much larger flag
-                    const Text('🇿🇦', style: TextStyle(fontSize: 64)),
+                    const Text('🇺🇸', style: TextStyle(fontSize: 64)),
                     const SizedBox(height: 10),
                     Text(
                       poll.country.displayName,
@@ -372,7 +372,7 @@ class _CountryPollCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'If national elections were held today',
+                      'If the midterm elections were held today',
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppTheme.textSecondary,
