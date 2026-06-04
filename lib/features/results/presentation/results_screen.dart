@@ -232,6 +232,27 @@ class _CountryPollCard extends StatelessWidget {
     return order.map((id) => options.firstWhere((o) => o.id == id)).toList();
   }
 
+  Map<String, dynamic> _swingForOption(String id) {
+    switch (id) {
+      case 'anc':
+        return {'name': 'ANC', 'text': '↑ +1.8%', 'color': const Color(0xFF22C55E)};
+      case 'da':
+        return {'name': 'DA', 'text': '↓ -0.9%', 'color': const Color(0xFFEF4444)};
+      case 'mk':
+        return {'name': 'MK', 'text': '↑ +0.5%', 'color': const Color(0xFF22C55E)};
+      case 'eff':
+        return {'name': 'EFF', 'text': '↓ -0.3%', 'color': const Color(0xFFEF4444)};
+      case 'ifp':
+        return {'name': 'IFP', 'text': '↑ +0.2%', 'color': const Color(0xFF22C55E)};
+      case 'pa':
+        return {'name': 'PA', 'text': '↓ -0.1%', 'color': const Color(0xFFEF4444)};
+      case 'ffp':
+        return {'name': 'VF+', 'text': '↑ +0.4%', 'color': const Color(0xFF22C55E)};
+      default:
+        return {'name': 'OTHER', 'text': '— 0.0%', 'color': Colors.grey};
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -327,43 +348,30 @@ class _CountryPollCard extends StatelessWidget {
                     const SizedBox(height: 8),
                     Wrap(
                       spacing: 20,
-                      runSpacing: 4,
-                      children: [
-                        Row(
+                      runSpacing: 8,
+                      children: _orderedOptions(poll.options).map((option) {
+                        final data = _swingForOption(option.id);
+                        return Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'ANC ',
-                              style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18),
+                              '${data['name']} ',
+                              style: theme.textTheme.bodyLarge?.copyWith(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             Text(
-                              '↑ +1.8%',
-                              style: const TextStyle(
-                                color: Color(0xFF22C55E),
+                              data['text'] as String,
+                              style: TextStyle(
+                                color: data['color'] as Color,
                                 fontWeight: FontWeight.w900,
-                                fontSize: 56,
+                                fontSize: 48,
                               ),
                             ),
                           ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'DA ',
-                              style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18),
-                            ),
-                            Text(
-                              '↓ -0.9%',
-                              style: const TextStyle(
-                                color: Color(0xFFEF4444),
-                                fontWeight: FontWeight.w900,
-                                fontSize: 56,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                        );
+                      }).toList(),
                     ),
                   ],
                 ),
@@ -379,7 +387,7 @@ class _CountryPollCard extends StatelessWidget {
                 final isMajorParty = ['anc', 'da', 'mk', 'eff', 'ifp', 'pa', 'ffp'].contains(option.id);
 
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 9),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -396,7 +404,7 @@ class _CountryPollCard extends StatelessWidget {
                               option.label,
                               style: theme.textTheme.titleMedium?.copyWith(
                                 fontWeight: FontWeight.w800,
-                                fontSize: 18,
+                                fontSize: 22,
                               ),
                             ),
                           ),
@@ -405,7 +413,7 @@ class _CountryPollCard extends StatelessWidget {
                             style: theme.textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.w900,
                               color: barColor,
-                              fontSize: 20,
+                              fontSize: 24,
                             ),
                           ),
                         ],
